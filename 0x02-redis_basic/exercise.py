@@ -2,18 +2,18 @@
 """ Module to manage Redis client"""
 from uuid import uuid4
 import redis
-from typing import Any
+from typing import Union
 
 
 class Cache(object):
-    """docstring for Cache."""
+    """ Redis class manage"""
 
     def __init__(self):
         """ Create a new redis instance """
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Any) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
             Method that generate a random key,
             store the input data in Redis using the random key
