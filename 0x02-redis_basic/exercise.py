@@ -29,7 +29,7 @@ class Cache(object):
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable]) -> Any:
+    def get(self, key: str, fn: Optional[Callable]) -> Union[str, bytes, int, float]:
         """
             Method that take a key string argument and an optional
             Callable argument named fn.
