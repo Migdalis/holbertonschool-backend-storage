@@ -41,10 +41,10 @@ class Cache(object):
             return fn(rspns)
         return rspns
 
-    def get_str(self, key: Any) -> str:
+    def get_str(self, key) -> str:
         """ Convert a key value to string """
         return self.get(key, str)
 
-    def get_int(self, key: Any) -> int:
+    def get_int(self, key) -> int:
         """ Convert a key value to string """
         return self.get(key, int)
