@@ -2,7 +2,7 @@
 """ Module to manage Redis client"""
 from uuid import uuid4
 import redis
-from typing import Union
+from typing import Union, Callable, Optional, Any
 
 
 class Cache(object):
@@ -27,5 +27,24 @@ class Cache(object):
         """
         key = str(uuid4())
         self._redis.set(key, data)
-        self._redis.bgsave()
         return key
+
+    def get(self, key: str, fn: Optional[Callable]) -> Any:
+        """
+            Method that take a key string argument and an optional
+            Callable argument named fn.
+            This callable will be used to convert the data back to 
+            the desired format
+        """
+        rspns = self._redis.get(key)
+        if fn:
+            return fn(rspns)
+        return rspns
+
+    def get_str(self, key: Any) -> str:
+        """ Convert a key value to string """
+        return self.get(key, str)
+
+    def get_int(self, key: Any) -> int:
+        """ Convert a key value to string """
+        return self.get(key, int)
