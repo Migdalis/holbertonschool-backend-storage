@@ -7,7 +7,7 @@ if __name__ == "__main__":
     """
         Script that provides some stats about Nginx logs stored in MongoDB
     """
-    client = MongoClient('mongodb://localhost:27017')
+    client = MongoClient('mongodb://localhost:27017/')
     methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     nginx = client.logs.nginx
 
